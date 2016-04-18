@@ -1,8 +1,18 @@
-﻿<Application
+﻿<prismUnity:PrismUnityApplication
     x:Class="HoloLensIPD.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:HoloLensIPD"
+    xmlns:converters="using:HoloLensIPD.Converters"
+    xmlns:prismUnity="using:Prism.Unity.Windows"
     RequestedTheme="Light">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>
 
-</Application>
+            <converters:BooleanToVisibilityConverter x:Key="bool2vis" IsTrue="Visible" IsFalse="Collapsed"/>
+        </ResourceDictionary>
+    </Application.Resources>
+    
+</prismUnity:PrismUnityApplication>

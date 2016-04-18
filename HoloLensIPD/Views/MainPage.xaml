@@ -1,0 +1,72 @@
+﻿<Page
+    x:Class="HoloLensIPD.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HoloLensIPD.Views"
+    xmlns:controls="using:HoloLensIPD.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prismMvvm="using:Prism.Windows.Mvvm"
+    prismMvvm:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d">
+
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <TextBox x:Name="ControlIPDText" Margin="8" Header="Control Image IPD"  PlaceholderText="mm" InputScope="Number"
+                 Text="{Binding ControlIPD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 RelativePanel.AlignLeftWithPanel="True"/>
+        <TextBox x:Name="FaceAPIKeyText" Margin="8" Header="Face Api Key"  PlaceholderText="" 
+                 Text="{Binding FaceApiKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 RelativePanel.RightOf="ControlIPDText"/>
+        <Button  x:Name="CaptureImageButton" Margin="8" Content="Capture Image" 
+                 Command="{Binding CaptureImageCommand}"
+                 RelativePanel.RightOf="FaceAPIKeyText" RelativePanel.AlignBottomWith="FaceAPIKeyText"/>
+        <Button  x:Name="ProcessButton" Margin="8" Content="Process Image" 
+                 Command="{Binding ProcessImageCommand}" IsEnabled="{Binding ProcessImageCommandEnabled}"
+                 RelativePanel.RightOf="CaptureImageButton" RelativePanel.AlignVerticalCenterWith="CaptureImageButton"/>
+
+        <Image x:Name="CapturedImage" Grid.Row="1" Source="{Binding ImageSource}" Stretch="Uniform" RelativePanel.Below="CaptureImageButton"/>
+
+        <Border Background="#7F000000" Visibility="{Binding IsBusy, Converter={StaticResource bool2vis}}"
+                RelativePanel.AlignBottomWith="CapturedImage" RelativePanel.AlignTopWith="CapturedImage" RelativePanel.AlignLeftWith="CapturedImage" RelativePanel.AlignRightWith="CapturedImage">
+            <ProgressRing IsActive="{Binding IsBusy}"/>
+        </Border>
+        
+        <controls:AnnotationCanvas x:Name="TheCanvas" 
+                                   Faces="{Binding Faces}" ImageRealSize="{Binding ImageRealSize}"
+                                   RelativePanel.AlignBottomWith="CapturedImage" RelativePanel.AlignTopWith="CapturedImage" RelativePanel.AlignLeftWith="CapturedImage" RelativePanel.AlignRightWith="CapturedImage" >
+        </controls:AnnotationCanvas>
+
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <!-- VisualState to be triggered when  window width > 320 effective pixels -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="540" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="CaptureImageButton.(RelativePanel.Below)" Value=""/>
+                        <Setter Target="CaptureImageButton.(RelativePanel.AlignBottomWith)" Value="ControlIPDText"/>
+                        <Setter Target="CaptureImageButton.(RelativePanel.AlignLeftWithPanel)" Value="false"/>
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState>
+                    <!-- VisualState to be triggered when 0px < window width < 320 effective pixels -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="CaptureImageButton.(RelativePanel.Below)" Value="ControlIPDText"/>
+                        <Setter Target="CaptureImageButton.(RelativePanel.AlignBottomWith)" Value=""/>
+
+                        <Setter Target="CaptureImageButton.(RelativePanel.AlignLeftWithPanel)" Value="true"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </RelativePanel>
+
+
+</Page>
