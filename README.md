@@ -8,7 +8,7 @@ Interpupillary distance (IPD) is the distance between the center of the pupils o
 #How can we measure it
 IPD can be measured with basic optometrist devices and HoloLens does come with a calibration software that can determine it. However,  the built-in tool takes 2-3 minutes to calculate and not everyone has a pupilometer available so often times the only option is to just set the neutral value and hope for the best.
 With the HoloLens IPD, you can determine a person's IPD within seconds. It will come with a larger margin of error than the pupilometer, and potentially a bit less accurate than the built-in tool. 
-Based on my current experiments, I found it to be accurate within 2mm which is better than nothing.
+Based on my current experiments, I found it to be accurate within 2mm which reresents a 3.1% deviation from the average value.
 
 
 #How does the app work
@@ -27,10 +27,12 @@ However, to transform this value in a real measurement, we still need a referenc
 
 
 #How to use the app
-1. Register for Face API. Enter the key in the app (it will be saved so no need to re-enter)
-2. Print an image of a face that will become the control image (yours, or some generic face - http://scottwesterfeld.com/blog/2005/10/pretties-week-begins/) 
-3. Measure the distance between eyes in the printed image. be as exact as possible - enter the value in the app (unit of measure is not relevant, but keep in mind that the result will be in the same unit of measure. HoloLens accepts distance in millimeters only)
-4. Use the app to **capture image** of the user, while holding the printed image, in the same plane as their eyes.
+1. Register for Face API (https://www.microsoft.com/cognitive-services/en-us/sign-up). 
+2. Enter the key in the app (it will be saved so no need to re-enter)
+3. Print an image of a face that will become the control image (yours, or some generic face - http://scottwesterfeld.com/blog/2005/10/pretties-week-begins/) 
+3. Measure the distance between eyes in the printed image. Be as exact as possible.
+4. Enter the value in the app (unit of measure is not relevant, but keep in mind that the result will be in the same unit of measure. HoloLens accepts distance in millimeters only)
+5. Use the app to **capture image** of the user, while holding the printed image, in the same plane as their eyes.
 5. Once the image is displayed, use the **process image** button to get the app to process the image and get you the results.
 
 *Note: In its current state the HoloLens IPD app will automatically pick the control image based on the smallest distance between eyes, so ensure that the printed control image smaller in size than a regular face.
