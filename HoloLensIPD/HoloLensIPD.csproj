@@ -118,7 +118,7 @@
     <None Include="HoloLensIPD_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\blandfaces.jpg" />
+    <Content Include="Assets\Tutorial\blandfaces.jpg" />
     <Content Include="Assets\Main.png" />
     <Content Include="Assets\NewStoreLogo.scale-100.png" />
     <Content Include="Assets\NewStoreLogo.scale-125.png" />
@@ -156,6 +156,10 @@
     <Content Include="Assets\Square71x71Logo.scale-150.png" />
     <Content Include="Assets\Square71x71Logo.scale-200.png" />
     <Content Include="Assets\Square71x71Logo.scale-400.png" />
+    <Content Include="Assets\Tutorial\1. Initial Screen.png" />
+    <Content Include="Assets\Tutorial\2. Image Captured.png" />
+    <Content Include="Assets\Tutorial\3. Image Processed.png" />
+    <Content Include="Assets\Tutorial\4. Image Processed.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
