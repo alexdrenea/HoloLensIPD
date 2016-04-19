@@ -122,10 +122,12 @@ namespace HoloLensIPD.ViewModels
 
                 ImageSource = bitmapSource;
                 OnPropertyChanged(() => ImageSource);
+                Faces = null;
+                OnPropertyChanged(() => Faces);
 
                 IsBusy = false;
 
-                //update annotations
+                _annotationCanvasUpdateEvent.Publish(true);
             }
         }
 

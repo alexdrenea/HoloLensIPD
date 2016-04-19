@@ -46,10 +46,11 @@ namespace HoloLensIPD.Controls
 
         public void UpdateAnnotations(bool unused)
         {
+            Children.Clear();
+
             if (Faces == null || ImageRealSize == null)
                 return;
 
-            Children.Clear();
             var ar = ImageRealSize.Height / this.ActualHeight;
             var replacedFaces = Faces.Select(f => new Rect(f.FaceBounds.Left / ar, f.FaceBounds.Top / ar, f.FaceBounds.Width / ar, f.FaceBounds.Height / ar)).ToArray();
 
@@ -69,9 +70,10 @@ namespace HoloLensIPD.Controls
                 {
                     Text = f.IPD.ToString("0.##"),
                     IsReadOnly = true,
+                    BorderThickness = new Thickness(0),
                 };
                 n.SetValue(Canvas.LeftProperty, f.FaceBounds.Left / ar);
-                n.SetValue(Canvas.TopProperty, f.FaceBounds.Top / ar - 25);
+                n.SetValue(Canvas.TopProperty, f.FaceBounds.Top / ar - 30);
                 return n;
             });
 
